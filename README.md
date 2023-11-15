@@ -1,12 +1,9 @@
 ## Table of Contents
-
-- [Description](#description)
-- [DatabaseSchema](#Database Schema)
-- [Requirements](#requirements)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Configuration](#configuration)
-- [Author](#author)
+1. [Description](#description)
+2. [Database Schema](#database-schema)
+3. [Configuration](#configuration)
+4. [Installation](#installation)
+5. [Usage](#usage)
 
 # Description
 
