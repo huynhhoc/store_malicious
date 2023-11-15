@@ -19,7 +19,7 @@ if __name__ =='__main__':
         try: 
             response = requests.get(source_url)
             if response.status_code == 200:
-                urls, ips, contents_urls, contents_ips = extract_urls_ips(response, save_all_to_temp_file)
+                urls, ips, contents_urls, contents_ips = extract_urls_ips(response, is_save_content_to_db)
                 insert_data(urls,  contents_urls, source_url,'urls', log)
                 insert_data(ips, contents_ips, source_url, 'ips', log)
                 if save_all_to_temp_file is not None:

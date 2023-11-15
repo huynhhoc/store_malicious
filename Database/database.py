@@ -45,7 +45,7 @@ def create_tables(log = None):
             conn.close()
         return is_success
 
-def insert_data(items, contents, source, table, log = None):
+def insert_data(items, contents, source, table, log=None):
     if not items or not contents:
         log.info("Info: The items or contents list from source {} of table {} is empty.".format(source, table))
         return
@@ -54,17 +54,21 @@ def insert_data(items, contents, source, table, log = None):
         with psycopg2.connect(**DB_CONFIG) as conn:
             with conn.cursor() as cursor:
                 if table == 'urls':
-                    query = sql.SQL("INSERT INTO urls (url, content, source) VALUES {} ON CONFLICT (url) DO NOTHING").format(
+                    query = sql.SQL(
+                        "INSERT INTO urls (url, content, source) VALUES {} ON CONFLICT (url) DO UPDATE SET content = EXCLUDED.content, source = EXCLUDED.source"
+                    ).format(
                         sql.SQL(', ').join(map(sql.Literal, zip(items, contents, [source] * len(items))))
                     )
                 elif table == 'ips':
-                    query = sql.SQL("INSERT INTO ips (ip, content, source) VALUES {} ON CONFLICT (ip) DO NOTHING").format(
+                    query = sql.SQL(
+                        "INSERT INTO ips (ip, content, source) VALUES {} ON CONFLICT (ip) DO UPDATE SET content = EXCLUDED.content, source = EXCLUDED.source"
+                    ).format(
                         sql.SQL(', ').join(map(sql.Literal, zip(items, contents, [source] * len(items))))
                     )
                 cursor.execute(query)
                 conn.commit()
                 if log is not None:
-                    log.info('Info: Table {} has been inserted {} items from the source {}'.format(table, len(items), source))
+                    log.info('Info: Table {} has been inserted/updated {} items from the source {}'.format(table, len(items), source))
 
     except Exception as e:
         if log is not None:
