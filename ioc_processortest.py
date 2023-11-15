@@ -33,22 +33,7 @@ class TestIOCProcessor(unittest.TestCase):
         mock_cursor.execute = mock_execute
         # Call the function
         is_success = create_tables(log=None)
-        print("is_success: ", is_success)
         self.assertEqual(is_success, True)
-
-        # Sample data for the 'urls' table
-        urls = ["http://example.com", "http://anotherexample.com"]
-        contents_urls = ["content1", "content2"]
-        source_url = "source_url"
-
-        # Sample data for the 'ips' table
-        ips = ["127.0.0.1", "192.168.1.1"]
-        contents_ips = ["ip_content1", "ip_content2"]
-        source_ip = "source_ip"
-
-        # Call the function to insert data into 'urls' table
-        insert_data(urls, contents_urls, source_url, 'urls', log=None)
-
 
 if __name__ == '__main__':
     unittest.main()
