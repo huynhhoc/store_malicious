@@ -7,7 +7,7 @@
 
 # Description
 
-The Store Malicious is a command-line application designed to efficiently process and store malicious Indicators of Compromise (IOCs) from specified data sources on the Internet into a relational database. The primary purpose is to collect and manage both IP addresses and URLs, associating them with their respective data sources.
+The ``ioc_processor`` is a command-line application designed to efficiently process and store malicious Indicators of Compromise (IOCs) from specified data sources on the Internet into a relational database. The primary purpose is to collect and manage both IP addresses and URLs, associating them with their respective data sources.
 
 # Database Schema
 
