@@ -1,9 +1,18 @@
-# database.py
+# Author: Huynh Thai Hoc
 import psycopg2
 from psycopg2 import sql
 from utils.config import DB_CONFIG
 
 def create_tables(log = None):
+    """
+    Create URLs and IPs tables in the database.
+
+    Args:
+        log (Optional[logging.Logger]): Logger for logging information.
+
+    Returns:
+        bool: True if tables are created successfully, False otherwise.
+    """
     conn = None
     is_success = False
     try:
@@ -44,10 +53,21 @@ def create_tables(log = None):
         if conn is not None:
             conn.close()
         return is_success
-
+#-------------------------------------------------------------------------------------------------------------------------------------------
 def insert_data(items, contents, source, table, log=None):
+    """
+    Insert or update data into URLs or IPs table.
+
+    Args:
+        items (List[str]): List of items.
+        contents (List[str]): List of contents.
+        source (str): Source information.
+        table (str): Table name ('urls' or 'ips').
+        log (Optional[logging.Logger]): Logger for logging information.
+    """
     if not items or not contents:
-        log.info("Info: The items or contents list from source {} of table {} is empty.".format(source, table))
+        if log is not None:
+            log.info("Info: The items or contents list from source {} of table {} is empty.".format(source, table))
         return
     conn = None
     try:
