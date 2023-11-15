@@ -1,4 +1,4 @@
-# config.py malicious_iocs
+# Author: Huynh Thai Hoc
 DB_CONFIG = {
     'dbname': 'malicious_iocs',
     'user': 'postgres',
