@@ -88,6 +88,6 @@ pip install -r requirements.txt
 ## Usage
 
 ``` 
-python ioc_processor.py -c --save ./output_file.csv
+python ioc_processor.py -c True --save ./output_file.csv
 
 ```
