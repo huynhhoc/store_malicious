@@ -1,14 +1,11 @@
-11-15-2023 20:37:05 | INFO | Info: Table urls has been inserted/updated 20649 items from the source https://urlhaus.abuse.ch/downloads/csv_recent/
-11-15-2023 20:37:05 | INFO | Info: The items or contents list from source https://urlhaus.abuse.ch/downloads/csv_recent/ of table ips is empty.
-11-15-2023 20:37:06 | INFO | Info: The items or contents list from source http://reputation.alienvault.com/reputation.data of table urls is empty.
-11-15-2023 20:37:06 | INFO | Info: Table ips has been inserted/updated 609 items from the source http://reputation.alienvault.com/reputation.data
-11-15-2023 20:37:06 | INFO | Info: Table urls has been inserted/updated 500 items from the source https://openphish.com/feed.txt
-11-15-2023 20:37:06 | INFO | Info: The items or contents list from source https://openphish.com/feed.txt of table ips is empty.
-11-15-2023 20:37:06 | INFO | Script execution completed successfully.
-11-15-2023 20:37:51 | INFO | Info: Table urls has been inserted/updated 20649 items from the source https://urlhaus.abuse.ch/downloads/csv_recent/
-11-15-2023 20:37:51 | INFO | Info: The items or contents list from source https://urlhaus.abuse.ch/downloads/csv_recent/ of table ips is empty.
-11-15-2023 20:37:51 | INFO | Info: The items or contents list from source http://reputation.alienvault.com/reputation.data of table urls is empty.
-11-15-2023 20:37:51 | INFO | Info: Table ips has been inserted/updated 609 items from the source http://reputation.alienvault.com/reputation.data
-11-15-2023 20:37:52 | INFO | Info: Table urls has been inserted/updated 500 items from the source https://openphish.com/feed.txt
-11-15-2023 20:37:52 | INFO | Info: The items or contents list from source https://openphish.com/feed.txt of table ips is empty.
-11-15-2023 20:37:52 | INFO | Script execution completed successfully.
+11-16-2023 20:22:31 | INFO | Info: Table urls has been inserted/updated 19819 items from the source https://urlhaus.abuse.ch/downloads/csv_recent/
+11-16-2023 20:22:31 | INFO | Info: The items or contents list from source https://urlhaus.abuse.ch/downloads/csv_recent/ of table ips is empty.
+11-16-2023 20:23:41 | INFO | Info: Table urls has been inserted/updated 19819 items from the source https://urlhaus.abuse.ch/downloads/csv_recent/
+11-16-2023 20:23:41 | INFO | Info: The items or contents list from source https://urlhaus.abuse.ch/downloads/csv_recent/ of table ips is empty.
+11-16-2023 20:25:07 | INFO | Info: Table urls has been inserted/updated 19819 items from the source https://urlhaus.abuse.ch/downloads/csv_recent/
+11-16-2023 20:25:07 | INFO | Info: The items or contents list from source https://urlhaus.abuse.ch/downloads/csv_recent/ of table ips is empty.
+11-16-2023 20:25:07 | INFO | Info: The items or contents list from source http://reputation.alienvault.com/reputation.data of table urls is empty.
+11-16-2023 20:25:07 | INFO | Info: Table ips has been inserted/updated 609 items from the source http://reputation.alienvault.com/reputation.data
+11-16-2023 20:25:07 | INFO | Info: Table urls has been inserted/updated 500 items from the source https://openphish.com/feed.txt
+11-16-2023 20:25:07 | INFO | Info: The items or contents list from source https://openphish.com/feed.txt of table ips is empty.
+11-16-2023 20:25:07 | INFO | Script execution completed successfully.
