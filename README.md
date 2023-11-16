@@ -92,6 +92,12 @@ pip install -r requirements.txt
 python ioc_processor.py -c True -s ./logs/temps.csv
 
 ```
+The images show the result of querying the urls and ips tables after processing and inserting data.
+
+<img align="center" width="600"  src="./images/urls.png">
+
+<img align="center" width="600"  src="./images/ips.png">
+
 # Testing
 
 ## Unit Tests
