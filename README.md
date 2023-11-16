@@ -99,7 +99,7 @@ python ioc_processor.py -c True --save ./output_file.csv
 To run the unit tests for the `ioc_processor` module, use the following command:
 
 ```
-python -m unittest test.TestIOCProcessor
+python -m unittest Test.TestIOCProcessor
 
 ```
 ## Integration Tests
@@ -107,13 +107,13 @@ python -m unittest test.TestIOCProcessor
 For integration tests involving the database, use the following command:
 
 ```
-python -m unittest test.TestInsertDataIntegrationIPs
+python -m unittest Test.TestInsertDataIntegrationIPs
 
 ```
 This command will execute the integration test for inserting data into the 'ips' table.
 
 ```
-python -m unittest test.TestInsertDataIntegrationURLs
+python -m unittest Test.TestInsertDataIntegrationURLs
 
 ```
 This command will execute the integration test for inserting data into the 'urls' table.
