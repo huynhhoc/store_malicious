@@ -1,43 +1,38 @@
-# Author: Huynh Thai Hoc
 import psycopg2
 from psycopg2 import sql
 from utils.config import DB_CONFIG
+from datetime import datetime  # Add this import for handling date-time
 
-def create_tables(log = None):
-    """
-    Create URLs and IPs tables in the database.
-
-    Args:
-        log (Optional[logging.Logger]): Logger for logging information.
-
-    Returns:
-        bool: True if tables are created successfully, False otherwise.
-    """
+def create_tables(log=None):
     conn = None
     is_success = False
     try:
         with psycopg2.connect(**DB_CONFIG) as conn:
             with conn.cursor() as cursor:
-                # Create URLs table
+                # Create URLs table with insert/update date-time column
                 cursor.execute('''
                     CREATE TABLE IF NOT EXISTS urls (
                         id SERIAL PRIMARY KEY,
                         url TEXT UNIQUE,
                         content TEXT,
-                        source TEXT
+                        source TEXT,
+                        insert_datetime TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+                        update_datetime TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
                     )
                 ''')
                 cursor.execute('''
                     CREATE INDEX IF NOT EXISTS idx_urls_url ON urls (url);
                 ''')
 
-                # Create IPs table
+                # Create IPs table with insert/update date-time column
                 cursor.execute('''
                     CREATE TABLE IF NOT EXISTS ips (
                         id SERIAL PRIMARY KEY,
                         ip TEXT UNIQUE,
                         content TEXT,
-                        source TEXT
+                        source TEXT,
+                        insert_datetime TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+                        update_datetime TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
                     )
                 ''')
 
@@ -53,18 +48,8 @@ def create_tables(log = None):
         if conn is not None:
             conn.close()
         return is_success
-#-------------------------------------------------------------------------------------------------------------------------------------------
-def insert_data(items, contents, source, table, log=None):
-    """
-    Insert or update data into URLs or IPs table.
 
-    Args:
-        items (List[str]): List of items.
-        contents (List[str]): List of contents.
-        source (str): Source information.
-        table (str): Table name ('urls' or 'ips').
-        log (Optional[logging.Logger]): Logger for logging information.
-    """
+def insert_data(items, contents, source, table, log=None):
     if not items or not contents:
         if log is not None:
             log.info("Info: The items or contents list from source {} of table {} is empty.".format(source, table))
@@ -73,17 +58,21 @@ def insert_data(items, contents, source, table, log=None):
     try:
         with psycopg2.connect(**DB_CONFIG) as conn:
             with conn.cursor() as cursor:
+                # Add date-time values
+                insert_datetime = datetime.now()
+                update_datetime = datetime.now()
+
                 if table == 'urls':
                     query = sql.SQL(
-                        "INSERT INTO urls (url, content, source) VALUES {} ON CONFLICT (url) DO UPDATE SET content = EXCLUDED.content, source = EXCLUDED.source"
+                        "INSERT INTO urls (url, content, source, insert_datetime, update_datetime) VALUES {} ON CONFLICT (url) DO UPDATE SET content = EXCLUDED.content, source = EXCLUDED.source, update_datetime = EXCLUDED.update_datetime"
                     ).format(
-                        sql.SQL(', ').join(map(sql.Literal, zip(items, contents, [source] * len(items))))
+                        sql.SQL(', ').join(map(sql.Literal, zip(items, contents, [source] * len(items), [insert_datetime] * len(items), [update_datetime] * len(items))))
                     )
                 elif table == 'ips':
                     query = sql.SQL(
-                        "INSERT INTO ips (ip, content, source) VALUES {} ON CONFLICT (ip) DO UPDATE SET content = EXCLUDED.content, source = EXCLUDED.source"
+                        "INSERT INTO ips (ip, content, source, insert_datetime, update_datetime) VALUES {} ON CONFLICT (ip) DO UPDATE SET content = EXCLUDED.content, source = EXCLUDED.source, update_datetime = EXCLUDED.update_datetime"
                     ).format(
-                        sql.SQL(', ').join(map(sql.Literal, zip(items, contents, [source] * len(items))))
+                        sql.SQL(', ').join(map(sql.Literal, zip(items, contents, [source] * len(items), [insert_datetime] * len(items), [update_datetime] * len(items))))
                     )
                 cursor.execute(query)
                 conn.commit()
@@ -96,4 +85,3 @@ def insert_data(items, contents, source, table, log=None):
     finally:
         if conn is not None:
             conn.close()
-
