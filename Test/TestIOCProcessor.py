@@ -1,7 +1,7 @@
 # Author: Huynh Thai Hoc
 import unittest
 from unittest.mock import patch, Mock, MagicMock
-from ioc_processor import extract_urls_ips, insert_data, create_tables
+from ioc_processor import extract_urls_ips, create_tables
 
 class TestIOCProcessor(unittest.TestCase):
     # This test mocks the 'requests.get' method to simulate a response
