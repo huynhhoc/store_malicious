@@ -4,7 +4,7 @@ from typing import Any
 import re
 import logging
 import sys
-import csv
+import os
 from typing import List, Tuple
 from utils.config import LOG_FILE
 #-------------------------------------------------------------------------------------------------------------------------------------------
@@ -131,6 +131,11 @@ def export_to_csv(data, file_path):
         data (str): Data to be written to the file.
         file_path (str): Path to the CSV file.
     """
+    # Extract the directory path from the file_path
+    directory = os.getcwd() + os.path.dirname(file_path)
+    # Check if the directory exists, if not, create it
+    if not os.path.exists(directory):
+        os.makedirs(directory)
     with open(file_path, 'a') as file:
         file.write(data)
 #-----------------------------------------------------------------------------------
