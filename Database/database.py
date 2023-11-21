@@ -44,8 +44,8 @@ def create_tables(log=None):
     except psycopg2.Error as e:
         if log is not None:
             log.error(f"Error connecting to the database: {e}")
-            if conn is not None:
-                conn.rollback()
+        if conn is not None:
+            conn.rollback()
     finally:
         if conn is not None:
             conn.close()
@@ -84,8 +84,8 @@ def insert_data(items, contents, source, table, log=None):
     except Exception as e:
         if log is not None:
             log.error(f"Error: {e}")
-            if conn is not None:
-                conn.rollback()
+        if conn is not None:
+            conn.rollback()
     finally:
         if conn is not None:
             conn.close()
