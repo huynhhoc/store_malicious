@@ -1,7 +1,7 @@
 import psycopg2
 from psycopg2 import sql
 from utils.config import DB_CONFIG
-from datetime import datetime  # Add this import for handling date-time
+from datetime import datetime
 
 def create_tables(log=None):
     conn = None
@@ -44,6 +44,8 @@ def create_tables(log=None):
     except psycopg2.Error as e:
         if log is not None:
             log.error(f"Error connecting to the database: {e}")
+            if conn is not None:
+                conn.rollback()
     finally:
         if conn is not None:
             conn.close()
@@ -82,6 +84,8 @@ def insert_data(items, contents, source, table, log=None):
     except Exception as e:
         if log is not None:
             log.error(f"Error: {e}")
+            if conn is not None:
+                conn.rollback()
     finally:
         if conn is not None:
             conn.close()
